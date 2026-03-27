@@ -117,29 +117,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新按钮状态
     function updateButtonStates() {
-        // 上一题按钮
-        elements.prevBtn.disabled = state.currentQuestionIndex === 0;
-        
-        // 提交按钮
-        const hasAnswer = state.answers[state.currentQuestionIndex].trim().length > 0;
-        elements.submitBtn.disabled = !hasAnswer;
-        
-        // 下一题按钮
-        const isLastQuestion = state.currentQuestionIndex === interviewData.questions.length - 1;
-        const hasScore = state.scores[state.currentQuestionIndex] !== null;
-        
-        if (hasScore && !isLastQuestion) {
-            elements.nextBtn.classList.remove('hidden');
-        } else {
-            elements.nextBtn.classList.add('hidden');
-        }
-        
-        // 查看总结报告按钮
-        if (state.isCompleted) {
-            elements.showSummaryBtn.classList.remove('hidden');
-        } else {
-            elements.showSummaryBtn.classList.add('hidden');
-        }
+    // 1. 上一题按钮逻辑保持不变
+    elements.prevBtn.disabled = state.currentQuestionIndex === 0;
+    
+    // 2. 核心修改：只要不是最后一题，就显示“下一题”按钮
+    const isLastQuestion = state.currentQuestionIndex === interviewData.questions.length - 1;
+    
+    if (!isLastQuestion) {
+        elements.nextBtn.classList.remove('hidden'); // 移除 hidden，让它一直可见
+    } else {
+        elements.nextBtn.classList.add('hidden');
+    }
+    
+    // 3. 提交按钮状态：没写字时禁用
+    const hasAnswer = state.answers[state.currentQuestionIndex].trim().length > 0;
+    elements.submitBtn.disabled = !hasAnswer;
+
+    // 4. 总结报告按钮
+    if (state.isCompleted) {
+        elements.showSummaryBtn.classList.remove('hidden');
+    } else {
+        elements.showSummaryBtn.classList.add('hidden');
+    }
     }
     
     // 更新提交按钮文本
