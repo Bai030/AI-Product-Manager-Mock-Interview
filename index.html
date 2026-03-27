@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI产品经理模拟面试系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1><i class="fas fa-robot"></i> AI产品经理模拟面试系统</h1>
+            <p class="subtitle">基于2025-2026年大厂真实面经设计的实战模拟工具</p>
+            <div class="progress-info">
+                <span id="progress-text">问题 1/10</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 问题展示区 -->
+            <section class="question-section">
+                <div class="question-header">
+                    <h2 id="question-title">问题标题</h2>
+                    <div class="dimension-tag" id="dimension-tag">产品设计</div>
+                </div>
+                <div class="question-body">
+                    <p id="question-text">问题内容...</p>
+                    <div class="exam-points">
+                        <h3><i class="fas fa-bullseye"></i> 考察要点</h3>
+                        <ul id="exam-points-list">
+                            <li>要点1</li>
+                            <li>要点2</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 答题区域 -->
+            <section class="answer-section">
+                <h3><i class="fas fa-edit"></i> 你的回答</h3>
+                <textarea id="answer-input" placeholder="请在此输入你的回答，尽量详细、有条理..."></textarea>
+                <div class="word-count">字数: <span id="word-count">0</span></div>
+            </section>
+
+            <!-- 评分反馈区域（初始隐藏） -->
+            <section class="feedback-section hidden" id="feedback-section">
+                <h3><i class="fas fa-chart-line"></i> 评分反馈</h3>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-value">0</span>
+                        <span class="score-label">分</span>
+                    </div>
+                    <div class="score-details">
+                        <p><strong>评分等级:</strong> <span id="score-level">待评估</span></p>
+                        <p><strong>关键考察点:</strong> <span id="key-points">...</span></p>
+                    </div>
+                </div>
+                <div class="feedback-details">
+                    <div class="strengths">
+                        <h4><i class="fas fa-check-circle"></i> 优点</h4>
+                        <ul id="strengths-list">
+                            <li>优点1</li>
+                        </ul>
+                    </div>
+                    <div class="weaknesses">
+                        <h4><i class="fas fa-exclamation-triangle"></i> 不足</h4>
+                        <ul id="weaknesses-list">
+                            <li>不足1</li>
+                        </ul>
+                    </div>
+                    <div class="suggestions">
+                        <h4><i class="fas fa-lightbulb"></i> 改进建议</h4>
+                        <ul id="suggestions-list">
+                            <li>建议1</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 总结报告区域（初始隐藏） -->
+            <section class="summary-section hidden" id="summary-section">
+                <h3><i class="fas fa-file-alt"></i> 模拟面试总结报告</h3>
+                <div class="summary-content">
+                    <div class="total-score">
+                        <h4>总分: <span id="total-score">0</span>/50</h4>
+                        <p class="overall-level" id="overall-level">等级</p>
+                    </div>
+                    <div class="dimension-scores">
+                        <h4>各维度得分</h4>
+                        <canvas id="radar-chart"></canvas>
+                    </div>
+                    <div class="improvement-areas">
+                        <h4>重点提升领域</h4>
+                        <ul id="improvement-list">
+                            <li>领域1</li>
+                        </ul>
+                    </div>
+                    <div class="action-plan">
+                        <h4>后续行动计划</h4>
+                        <ol id="action-list">
+                            <li>步骤1</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 控制按钮区域 -->
+        <footer class="footer">
+            <div class="button-group">
+                <button id="prev-btn" class="btn btn-secondary" disabled>
+                    <i class="fas fa-arrow-left"></i> 上一题
+                </button>
+                <button id="submit-btn" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> 提交评分
+                </button>
+                <button id="next-btn" class="btn btn-secondary hidden">
+                    下一题 <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="show-summary-btn" class="btn btn-success hidden">
+                    <i class="fas fa-chart-pie"></i> 查看总结报告
+                </button>
+                <button id="restart-btn" class="btn btn-outline hidden">
+                    <i class="fas fa-redo"></i> 重新开始
+                </button>
+            </div>
+            <div class="instructions">
+                <p><i class="fas fa-info-circle"></i> 提示: 每题满分5分，回答尽量详细、有结构。提交后可查看评分反馈。</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 引入JavaScript库 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="interview-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
